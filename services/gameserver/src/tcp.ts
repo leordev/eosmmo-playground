@@ -1,4 +1,5 @@
 import net, { Socket } from "net";
+import { GS_TCP_HOST, GS_TCP_PORT } from "./settings";
 
 const server = net.createServer();
 
@@ -99,7 +100,5 @@ server.on("connection", socket => {
   });
 });
 
-const HOST = "127.0.0.1";
-const PORT = 5095;
-server.listen(PORT, HOST);
-console.info(`TCP Listening @ ${HOST}:${PORT}`);
+server.listen(GS_TCP_PORT, GS_TCP_HOST);
+console.info(`GameServer TCP Listening @ ${GS_TCP_HOST}:${GS_TCP_PORT}`);

@@ -1,11 +1,16 @@
 import { BaseActionWatcher, Block } from "demux";
 import { MongoActionReader } from "demux-eos";
 import ObjectActionHandler from "./ObjectActionHandler";
+import net from "net";
 import {
   MONGO_DB_CONFIG,
   CHAIN_INIT_BLOCK,
-  CONTRACT_ACCOUNT
+  CONTRACT_ACCOUNT,
+  GS_TCP_PORT,
+  GS_TCP_HOST
 } from "../settings";
+
+const gsClient = new net.Socket();
 
 const loggerEffect = (payload: any, block: Block) => {
   console.info(
@@ -16,7 +21,13 @@ const loggerEffect = (payload: any, block: Block) => {
   );
 };
 
-const loginSession = (payload: any) => {};
+const loginSession = (payload: any) => {
+  const loginMsg = `demux-login:${payload.data.session};${payload.data.owner};${
+    payload.transactionId
+  }|`;
+  console.info("GSMsg: ", loginMsg);
+  gsClient.write(loginMsg);
+};
 
 const effects = [
   {
@@ -60,5 +71,17 @@ const init = async () => {
   actionWatcher.watch();
 };
 
-console.info(">>>>> Initializing DEMUX <<<<<");
-init();
+console.info(">>>>> Connecting to game server <<<<<");
+gsClient.connect(
+  GS_TCP_PORT,
+  GS_TCP_HOST,
+  () => {
+    console.info(">>>>> Game Server Connected <<<<<");
+    console.info(">>>>> Initializing DEMUX <<<<<");
+    init();
+
+    gsClient.on("close", () => {
+      throw "Game Server connection closed. ABORTING.";
+    });
+  }
+);

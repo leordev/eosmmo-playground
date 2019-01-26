@@ -8,3 +8,6 @@ export const MONGO_DB_CONFIG = {
 export const CHAIN_INIT_BLOCK = Number(process.env.CHAIN_INIT_BLOCK || 10);
 
 export const CONTRACT_ACCOUNT = process.env.CONTRACT_ACCOUNT || "eosmmoserver";
+
+export const GS_TCP_HOST = "127.0.0.1";
+export const GS_TCP_PORT = 5095;
