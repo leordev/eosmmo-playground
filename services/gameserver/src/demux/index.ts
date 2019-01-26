@@ -22,9 +22,7 @@ const loggerEffect = (payload: any, block: Block) => {
 };
 
 const loginSession = (payload: any) => {
-  const loginMsg = `demux-login:${payload.data.session};${payload.data.owner};${
-    payload.transactionId
-  }|`;
+  const loginMsg = `dmxl:${payload.data.session};${payload.data.owner}|`;
   console.info("GSMsg: ", loginMsg);
   gsClient.write(loginMsg);
 };

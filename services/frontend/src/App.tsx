@@ -18,7 +18,7 @@ import {
   CHAIN_ID,
   EOS_RPC
 } from "./api/eos";
-import AccountSummary from "./modules/AccountSumary";
+import AccountSummary from "./modules/AccountSummary";
 
 const network = {
   blockchain: "eos",
@@ -133,7 +133,12 @@ const App = () => {
               )}
             />
           )}
-        <Route path="/auth/:sessionId" component={AuthSession} />
+        <Route
+          path="/auth/:sessionId"
+          render={props => (
+            <AuthSession {...props} api={api} account={account} />
+          )}
+        />
       </Switch>
     </div>
   );

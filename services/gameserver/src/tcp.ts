@@ -52,6 +52,23 @@ server.on("connection", socket => {
     for (const msg of messages) {
       const [header, payload] = msg.split(":");
       switch (header) {
+        case "dmxl":
+          const [session, player] = payload.split(";");
+          console.info(`Login session/player ${session}/${player}`);
+          let index = 0;
+          for (const socketInfo of socketInfos) {
+            const isEngineServer = !!socketInfo.level && !!socketInfo.region;
+            if (isEngineServer) {
+              const socket = sockets[index];
+              if (socket) {
+                const msg = `tvs:${session};${session};${player};${player}|`;
+                console.info("Messaging GameEngine Server:", msg);
+                socket.write(msg);
+              }
+            }
+            index += 1;
+          }
+          break;
         case "info":
           const [level, region] = payload.split(";");
           console.info(`Updating socket level: ${level} / region: ${region}`);
