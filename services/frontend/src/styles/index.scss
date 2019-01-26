@@ -20,3 +20,60 @@ body {
   margin: 0;
   padding: 0;
 }
+
+h1,
+h2,
+h3,
+h4 {
+  margin-top: 12px;
+  a {
+    color: inherit;
+  }
+}
+
+h1,
+h2,
+h3 {
+  margin-bottom: 8px;
+  font-weight: 900;
+}
+
+h1 {
+  font-size: 42px;
+}
+
+h2 {
+  font-size: 32px;
+}
+
+h3 {
+  font-size: 24px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  small {
+    font-size: 12px;
+    display: block;
+    margin-top: -10px;
+  }
+}
+
+.has-margin-top {
+  margin-top: 24px;
+}
+
+.has-margin-right {
+  margin-right: 24px;
+}
+
+.has-margin-bottom {
+  margin-bottom: 24px;
+}
+
+.has-margin-left {
+  margin-left: 24px;
+}
