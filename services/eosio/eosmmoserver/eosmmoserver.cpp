@@ -121,21 +121,21 @@ public:
     });
   }
 
-  ACTION login(name owner)
+  ACTION login(name owner, string session)
   {
     require_auth(owner);
     auto aitr = _accounts.find(owner.value);
     eosio_assert(aitr != _accounts.end(), "Invalid Account");
   }
 
-  ACTION logout(name owner)
+  ACTION logout(name owner, string session)
   {
     require_auth(_self);
     auto aitr = _accounts.find(owner.value);
     eosio_assert(aitr != _accounts.end(), "Invalid Account");
   }
 
-  ACTION addplayerxp(name owner, uint64_t experience, string /* memo */)
+  ACTION addplayerxp(name owner, uint64_t experience, string memo)
   {
     require_auth(_self);
 
@@ -147,7 +147,7 @@ public:
     });
   }
 
-  ACTION setplayeratr(name owner, uint32_t str, uint32_t agi, uint32_t intl, string /* memo */)
+  ACTION setplayeratr(name owner, uint32_t str, uint32_t agi, uint32_t intl, string memo)
   {
     require_auth(_self);
 
@@ -163,7 +163,7 @@ public:
     });
   }
 
-  ACTION goldissue(name user, asset gold, string /* memo */)
+  ACTION goldissue(name user, asset gold, string memo)
   {
     require_auth(_self);
 
@@ -178,7 +178,7 @@ public:
     });
   }
 
-  ACTION itemissue(name user, uint64_t pos, st_inventory item, string /* memo */)
+  ACTION itemissue(name user, uint64_t pos, st_inventory item, string memo)
   {
     require_auth(_self);
 
@@ -190,7 +190,7 @@ public:
     });
   }
 
-  ACTION itemdestroy(name user, uint64_t pos, st_inventory item, string /* memo */)
+  ACTION itemdestroy(name user, uint64_t pos, st_inventory item, string memo)
   {
     require_auth(_self);
 
@@ -210,7 +210,7 @@ public:
     });
   }
 
-  ACTION equipissue(name user, uint64_t id, symbol item, uint64_t experience, string /* memo */)
+  ACTION equipissue(name user, uint64_t id, symbol item, uint64_t experience, string memo)
   {
     require_auth(_self);
 
@@ -273,7 +273,7 @@ public:
     });
   }
 
-  ACTION addequipxp(uint64_t id, uint64_t exp, string /* memo */)
+  ACTION addequipxp(uint64_t id, uint64_t exp, string memo)
   {
     require_auth(_self);
 

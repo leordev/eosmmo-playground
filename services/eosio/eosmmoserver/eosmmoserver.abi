@@ -1,5 +1,5 @@
 {
-    "____comment": "This file was generated with eosio-abigen. DO NOT EDIT Fri Jan 18 16:57:41 2019",
+    "____comment": "This file was generated with eosio-abigen. DO NOT EDIT Sat Jan 26 11:26:58 2019",
     "version": "eosio::abi/1.1",
     "structs": [
         {
@@ -73,7 +73,7 @@
                     "type": "uint64"
                 },
                 {
-                    "name": "",
+                    "name": "memo",
                     "type": "string"
                 }
             ]
@@ -91,7 +91,7 @@
                     "type": "uint64"
                 },
                 {
-                    "name": "",
+                    "name": "memo",
                     "type": "string"
                 }
             ]
@@ -139,7 +139,25 @@
                     "type": "uint64"
                 },
                 {
-                    "name": "",
+                    "name": "memo",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "goldissue",
+            "base": "",
+            "fields": [
+                {
+                    "name": "user",
+                    "type": "name"
+                },
+                {
+                    "name": "gold",
+                    "type": "asset"
+                },
+                {
+                    "name": "memo",
                     "type": "string"
                 }
             ]
@@ -161,7 +179,7 @@
                     "type": "st_inventory"
                 },
                 {
-                    "name": "",
+                    "name": "memo",
                     "type": "string"
                 }
             ]
@@ -183,7 +201,35 @@
                     "type": "st_inventory"
                 },
                 {
-                    "name": "",
+                    "name": "memo",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "login",
+            "base": "",
+            "fields": [
+                {
+                    "name": "owner",
+                    "type": "name"
+                },
+                {
+                    "name": "session",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "logout",
+            "base": "",
+            "fields": [
+                {
+                    "name": "owner",
+                    "type": "name"
+                },
+                {
+                    "name": "session",
                     "type": "string"
                 }
             ]
@@ -241,7 +287,7 @@
                     "type": "uint32"
                 },
                 {
-                    "name": "",
+                    "name": "memo",
                     "type": "string"
                 }
             ]
@@ -283,6 +329,11 @@
             "ricardian_contract": ""
         },
         {
+            "name": "goldissue",
+            "type": "goldissue",
+            "ricardian_contract": ""
+        },
+        {
             "name": "itemdestroy",
             "type": "itemdestroy",
             "ricardian_contract": ""
@@ -290,6 +341,16 @@
         {
             "name": "itemissue",
             "type": "itemissue",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "login",
+            "type": "login",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "logout",
+            "type": "logout",
             "ricardian_contract": ""
         },
         {

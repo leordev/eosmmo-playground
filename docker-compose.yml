@@ -1,0 +1,78 @@
+version: "3.4"
+services:
+  postgres:
+    image: postgres:10.0
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: docker
+      POSTGRES_PASSWORD: docker
+      DB_NAME: eosmmo
+      DB_USER: docker
+      DB_PASSWORD: docker
+      POSTGRES_DB: eosmmo
+
+  mongodb:
+    image: mongo:4.0-xenial
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb:/data/db
+
+  testnet:
+    image: eosio/eos:v1.4.0
+    command: nodeosd.sh --http-alias=testnet:8888 --http-alias=127.0.0.1:8888 --http-alias=localhost:8888
+    stop_grace_period: 3m0s
+    labels:
+      - "cleanup"
+    ports:
+      - "8888:8888"
+      - "9876:9876"
+    volumes:
+      - "./services/eosio/config.ini:/opt/eosio/bin/data-dir/config.ini"
+      - "./services/eosio:/opt/application"
+      - testnetchaindata:/opt/eosio/bin/data-dir
+
+  testnetfn:
+    image: eosio/eos:v1.4.0
+    command: nodeosd.sh --http-alias=testnetfn:8889 --http-alias=127.0.0.1:8889 --http-alias=localhost:8889 --mongodb-uri mongodb://mongodb:27017/testnet --p2p-peer-address testnet:9876
+    stop_grace_period: 3m0s
+    environment:
+      WAIT_HOSTS: mongo:27017
+      WAIT_HOSTS_TIMEOUT: 60
+    depends_on:
+      - mongodb
+    labels:
+      - "cleanup"
+    ports:
+      - "8889:8888"
+      - "9877:9876"
+    volumes:
+      - "./services/eosio/config-fn.ini:/opt/eosio/bin/data-dir/config.ini"
+      - "./services/eosio:/opt/application"
+      - testnetfnchaindata:/opt/eosio/bin/data-dir
+
+# socketcluster:
+#   image: socketcluster/socketcluster:v14.3.2
+#   ports:
+#     - "9099:8000"
+#   environment:
+#     SOCKETCLUSTER_WORKER_CONTROLLER: "/usr/src/controllers/worker.js"
+#   volumes:
+#     - ./services/socketcluster/:/usr/src/controllers/
+
+volumes:
+  testnetchaindata:
+    labels:
+      - "cleanup"
+  testnetfnchaindata:
+    labels:
+      - "cleanup"
+  postgres:
+    labels:
+      - "cleanup"
+  mongodb:
+    labels:
+      - "cleanup"
