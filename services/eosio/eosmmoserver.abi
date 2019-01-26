@@ -1,0 +1,330 @@
+{
+    "____comment": "This file was generated with eosio-abigen. DO NOT EDIT Fri Jan 18 16:57:41 2019",
+    "version": "eosio::abi/1.1",
+    "structs": [
+        {
+            "name": "account",
+            "base": "",
+            "fields": [
+                {
+                    "name": "owner",
+                    "type": "name"
+                },
+                {
+                    "name": "playername",
+                    "type": "string"
+                },
+                {
+                    "name": "chartype",
+                    "type": "uint32"
+                },
+                {
+                    "name": "experience",
+                    "type": "uint64"
+                },
+                {
+                    "name": "str",
+                    "type": "uint32"
+                },
+                {
+                    "name": "agi",
+                    "type": "uint32"
+                },
+                {
+                    "name": "intl",
+                    "type": "uint32"
+                },
+                {
+                    "name": "gold",
+                    "type": "asset"
+                },
+                {
+                    "name": "quests",
+                    "type": "uint64[]"
+                },
+                {
+                    "name": "inventory",
+                    "type": "st_inventory[]"
+                },
+                {
+                    "name": "activeeqs",
+                    "type": "uint64[]"
+                },
+                {
+                    "name": "bankinv",
+                    "type": "st_inventory[]"
+                },
+                {
+                    "name": "bankeqs",
+                    "type": "uint64[]"
+                }
+            ]
+        },
+        {
+            "name": "addequipxp",
+            "base": "",
+            "fields": [
+                {
+                    "name": "id",
+                    "type": "uint64"
+                },
+                {
+                    "name": "exp",
+                    "type": "uint64"
+                },
+                {
+                    "name": "",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "addplayerxp",
+            "base": "",
+            "fields": [
+                {
+                    "name": "owner",
+                    "type": "name"
+                },
+                {
+                    "name": "experience",
+                    "type": "uint64"
+                },
+                {
+                    "name": "",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "equip",
+            "base": "",
+            "fields": [
+                {
+                    "name": "id",
+                    "type": "uint64"
+                },
+                {
+                    "name": "owner",
+                    "type": "name"
+                },
+                {
+                    "name": "item",
+                    "type": "symbol"
+                },
+                {
+                    "name": "experience",
+                    "type": "uint64"
+                }
+            ]
+        },
+        {
+            "name": "equipissue",
+            "base": "",
+            "fields": [
+                {
+                    "name": "user",
+                    "type": "name"
+                },
+                {
+                    "name": "id",
+                    "type": "uint64"
+                },
+                {
+                    "name": "item",
+                    "type": "symbol"
+                },
+                {
+                    "name": "experience",
+                    "type": "uint64"
+                },
+                {
+                    "name": "",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "itemdestroy",
+            "base": "",
+            "fields": [
+                {
+                    "name": "user",
+                    "type": "name"
+                },
+                {
+                    "name": "pos",
+                    "type": "uint64"
+                },
+                {
+                    "name": "item",
+                    "type": "st_inventory"
+                },
+                {
+                    "name": "",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "itemissue",
+            "base": "",
+            "fields": [
+                {
+                    "name": "user",
+                    "type": "name"
+                },
+                {
+                    "name": "pos",
+                    "type": "uint64"
+                },
+                {
+                    "name": "item",
+                    "type": "st_inventory"
+                },
+                {
+                    "name": "",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "openaccount",
+            "base": "",
+            "fields": [
+                {
+                    "name": "owner",
+                    "type": "name"
+                },
+                {
+                    "name": "playername",
+                    "type": "string"
+                },
+                {
+                    "name": "chartype",
+                    "type": "uint32"
+                }
+            ]
+        },
+        {
+            "name": "playerequip",
+            "base": "",
+            "fields": [
+                {
+                    "name": "user",
+                    "type": "name"
+                },
+                {
+                    "name": "id",
+                    "type": "uint64"
+                }
+            ]
+        },
+        {
+            "name": "setplayeratr",
+            "base": "",
+            "fields": [
+                {
+                    "name": "owner",
+                    "type": "name"
+                },
+                {
+                    "name": "str",
+                    "type": "uint32"
+                },
+                {
+                    "name": "agi",
+                    "type": "uint32"
+                },
+                {
+                    "name": "intl",
+                    "type": "uint32"
+                },
+                {
+                    "name": "",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "st_inventory",
+            "base": "",
+            "fields": [
+                {
+                    "name": "item",
+                    "type": "symbol"
+                },
+                {
+                    "name": "quantity",
+                    "type": "int32"
+                },
+                {
+                    "name": "id",
+                    "type": "uint64"
+                }
+            ]
+        }
+    ],
+    "types": [],
+    "actions": [
+        {
+            "name": "addequipxp",
+            "type": "addequipxp",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "addplayerxp",
+            "type": "addplayerxp",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "equipissue",
+            "type": "equipissue",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "itemdestroy",
+            "type": "itemdestroy",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "itemissue",
+            "type": "itemissue",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "openaccount",
+            "type": "openaccount",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "playerequip",
+            "type": "playerequip",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "setplayeratr",
+            "type": "setplayeratr",
+            "ricardian_contract": ""
+        }
+    ],
+    "tables": [
+        {
+            "name": "accounts",
+            "type": "account",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "equips",
+            "type": "equip",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        }
+    ],
+    "ricardian_clauses": [],
+    "variants": [],
+    "abi_extensions": []
+}
