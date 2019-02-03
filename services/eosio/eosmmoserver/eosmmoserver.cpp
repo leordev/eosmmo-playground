@@ -51,6 +51,9 @@ public:
     uint32_t agi = 5;
     uint32_t intl = 5;
 
+    uint32_t world = 0;
+    vector<uint32_t> location = {0, 0, 0};
+
     asset gold;
 
     vector<uint64_t> quests = {};
@@ -144,6 +147,19 @@ public:
 
     _accounts.modify(aitr, _self, [&](account &r) {
       r.experience = r.experience + experience;
+    });
+  }
+
+  ACTION updlocation(name owner, uint32_t world, vector<uint32_t> location)
+  {
+    require_auth(_self);
+
+    auto aitr = _accounts.find(owner.value);
+    eosio_assert(aitr != _accounts.end(), "Invalid account");
+
+    _accounts.modify(aitr, _self, [&](account &r) {
+      r.world = world;
+      r.location = location;
     });
   }
 
@@ -286,4 +302,4 @@ public:
   }
 };
 
-EOSIO_DISPATCH(eosmmoserver, (openaccount)(login)(logout)(addplayerxp)(setplayeratr)(goldissue)(itemissue)(itemdestroy)(equipissue)(playerequip)(addequipxp))
+EOSIO_DISPATCH(eosmmoserver, (openaccount)(login)(logout)(addplayerxp)(updlocation)(setplayeratr)(goldissue)(itemissue)(itemdestroy)(equipissue)(playerequip)(addequipxp))

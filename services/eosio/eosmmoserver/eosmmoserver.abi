@@ -1,5 +1,5 @@
 {
-    "____comment": "This file was generated with eosio-abigen. DO NOT EDIT Sat Jan 26 11:26:58 2019",
+    "____comment": "This file was generated with eosio-abigen. DO NOT EDIT Sat Feb  2 22:08:47 2019",
     "version": "eosio::abi/1.1",
     "structs": [
         {
@@ -33,6 +33,14 @@
                 {
                     "name": "intl",
                     "type": "uint32"
+                },
+                {
+                    "name": "world",
+                    "type": "uint32"
+                },
+                {
+                    "name": "location",
+                    "type": "uint32[]"
                 },
                 {
                     "name": "gold",
@@ -309,6 +317,24 @@
                     "type": "uint64"
                 }
             ]
+        },
+        {
+            "name": "updlocation",
+            "base": "",
+            "fields": [
+                {
+                    "name": "owner",
+                    "type": "name"
+                },
+                {
+                    "name": "world",
+                    "type": "uint32"
+                },
+                {
+                    "name": "location",
+                    "type": "uint32[]"
+                }
+            ]
         }
     ],
     "types": [],
@@ -366,6 +392,11 @@
         {
             "name": "setplayeratr",
             "type": "setplayeratr",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "updlocation",
+            "type": "updlocation",
             "ricardian_contract": ""
         }
     ],
