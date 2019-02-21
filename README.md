@@ -2,6 +2,11 @@
 
 Just a proof of concept of a MMO based on EOS chain.
 
+```
+docker-compose up -d
+docker-compose exec testnet /opt/application/init_chain.sh
+```
+
 ## TCP Game Server
 
 It listens to your gameservers and handle the players actions.

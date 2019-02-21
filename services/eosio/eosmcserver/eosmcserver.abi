@@ -1,0 +1,145 @@
+{
+    "____comment": "This file was generated with eosio-abigen. DO NOT EDIT Wed Feb 20 11:14:42 2019",
+    "version": "eosio::abi/1.1",
+    "structs": [
+        {
+            "name": "account",
+            "base": "",
+            "fields": [
+                {
+                    "name": "owner",
+                    "type": "name"
+                },
+                {
+                    "name": "playername",
+                    "type": "string"
+                },
+                {
+                    "name": "experience",
+                    "type": "uint64"
+                },
+                {
+                    "name": "achievements",
+                    "type": "uint64[]"
+                },
+                {
+                    "name": "bankinv",
+                    "type": "st_inventory[]"
+                }
+            ]
+        },
+        {
+            "name": "batchdeposit",
+            "base": "",
+            "fields": [
+                {
+                    "name": "user",
+                    "type": "name"
+                },
+                {
+                    "name": "batch",
+                    "type": "st_inventory[]"
+                },
+                {
+                    "name": "memo",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "login",
+            "base": "",
+            "fields": [
+                {
+                    "name": "owner",
+                    "type": "name"
+                },
+                {
+                    "name": "session",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "logout",
+            "base": "",
+            "fields": [
+                {
+                    "name": "owner",
+                    "type": "name"
+                },
+                {
+                    "name": "session",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "openaccount",
+            "base": "",
+            "fields": [
+                {
+                    "name": "owner",
+                    "type": "name"
+                },
+                {
+                    "name": "playername",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "st_inventory",
+            "base": "",
+            "fields": [
+                {
+                    "name": "id",
+                    "type": "uint64"
+                },
+                {
+                    "name": "quantity",
+                    "type": "int32"
+                },
+                {
+                    "name": "nbt",
+                    "type": "string"
+                }
+            ]
+        }
+    ],
+    "types": [],
+    "actions": [
+        {
+            "name": "batchdeposit",
+            "type": "batchdeposit",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "login",
+            "type": "login",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "logout",
+            "type": "logout",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "openaccount",
+            "type": "openaccount",
+            "ricardian_contract": ""
+        }
+    ],
+    "tables": [
+        {
+            "name": "accounts",
+            "type": "account",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        }
+    ],
+    "ricardian_clauses": [],
+    "variants": [],
+    "abi_extensions": []
+}

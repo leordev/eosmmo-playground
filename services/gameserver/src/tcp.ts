@@ -29,7 +29,12 @@ server.on("connection", socket => {
   socketInfos.push(socketInfo);
   socketCounter += 1;
 
-  socket.write("info:");
+  const sendMessage = (msg: string) => {
+    console.info(`<< ${socket.remoteAddress}:${socket.remotePort} << [${msg}]`);
+    socket.write(msg + "\n");
+  };
+
+  sendMessage("info:");
 
   // let infoCounter = 0
   // const randomPing = () => {
@@ -43,14 +48,26 @@ server.on("connection", socket => {
   // randomPing();
 
   socket.on("data", data => {
-    console.info(
-      `Data Received >> ${socket.remoteAddress}:${socket.remotePort} >> ${data}`
-    );
-
-    const messages = data.toString().split("|");
+    const messages = data
+      .toString()
+      .split(/\r\n|\r|\n/g)
+      .slice(0, -1);
 
     for (const msg of messages) {
-      const [header, payload] = msg.split(":");
+      if (!msg) continue;
+
+      console.info(
+        `>> ${socket.remoteAddress}:${socket.remotePort} >> [${msg}]`
+      );
+
+      if (msg === "ping") {
+        sendMessage("pong");
+        continue;
+      }
+
+      const [header, ...payloadList] = msg.split(":");
+      const payload = payloadList.join();
+
       switch (header) {
         case "dmxl":
           const [session, player] = payload.split(";");
@@ -61,9 +78,9 @@ server.on("connection", socket => {
             if (isEngineServer) {
               const socket = sockets[index];
               if (socket) {
-                const msg = `tvs:${session};${session};${player};${player}|`;
+                const msg = `tvs:${session};${session};${player};${player}`;
                 console.info("Messaging GameEngine Server:", msg);
-                socket.write(msg);
+                sendMessage(msg);
               }
             }
             index += 1;
@@ -74,6 +91,16 @@ server.on("connection", socket => {
           console.info(`Updating socket level: ${level} / region: ${region}`);
           socketInfo.level = level;
           socketInfo.region = region;
+          sendMessage("ok");
+          break;
+        case "db":
+          const [account, memo, batch] = payload.split("|");
+          if (account && memo && batch) {
+            // TODO: Implement Blockchain Transaction
+            sendMessage("OK");
+          } else {
+            sendMessage("FAIL:Missing Account, Memo and Batch");
+          }
           break;
         case "vtk":
           const [token] = payload.split(";");
@@ -82,14 +109,14 @@ server.on("connection", socket => {
           if (token === "leordev") {
             const account = "leordev";
             const playerName = "Leo";
-            socket.write(`tvs:${token};newtoken?;${account};${playerName}|`);
+            sendMessage(`tvs:${token};newtoken?;${account};${playerName}`);
           } else {
-            socket.write(`tvf:${token}|`);
+            sendMessage(`tvf:${token}`);
           }
 
           break;
         default:
-          console.warn(`Unknown message`);
+          sendMessage(`unknown`);
       }
     }
   });
