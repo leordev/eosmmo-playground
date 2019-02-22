@@ -17,6 +17,32 @@ public:
   {
   }
 
+  TABLE symbolinfo
+  {
+    uint64_t global_id;
+    string symbol;
+  };
+  typedef eosio::multi_index<"symbolinfo"_n, symbolinfo> t_symbolinfo;
+  t_symbolinfo tb_symbolinfo;
+
+  TABLE tokenstats
+  {
+    name token_name;
+    uint64_t global_id;
+    name issuer;
+    string symbol;
+    name category;
+    bool fungible;
+    bool burnable;
+    bool transferable;
+    double current_supply;
+    uint64_t max_supply;
+
+    uint64_t primary_key() const { return token_name.value; }
+  };
+  typedef eosio::multi_index<"tokenstats"_n, tokenstats> t_tokenstats;
+  t_tokenstats tb_tokenstats;
+
   struct st_inventory
   {
     uint64_t id;
